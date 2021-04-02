@@ -62,7 +62,7 @@ TORCH_IMPL_FUNC(pow_Scalar_out) (const Scalar& base, const Tensor& exp, const Te
   } else if (!base.isComplex() && base.toDouble() == 1.0) {
     out.fill_(1);
   } else {
-    at::pow_out(const_cast<Tensor&>(out), c10::scalar_to_tensor(base, exp.device()), exp); // redispatch!
+    at::pow_out(const_cast<Tensor&>(out), wrapped_scalar_tensor(base, exp.device()), exp); // redispatch!
   }
 }
 

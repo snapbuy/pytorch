@@ -148,7 +148,7 @@ static Tensor wrapped_scalar_tensor(const Scalar& scalar) {
   return tensor;
 }
 
-Tensor& rad2deg_out(const Tensor& self, Tensor& result) {
+Tensor& rad2deg_out(Tensor& result, const Tensor& self) {
   TORCH_CHECK(!self.is_complex(), "rad2deg is not supported for complex tensors.");
   constexpr double M_180_PI = 57.295779513082320876798154814105170332405472466564;
   return at::mul_out(result, self, wrapped_scalar_tensor(Scalar(M_180_PI)));
